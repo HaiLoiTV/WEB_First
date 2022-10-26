@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #select{
+            width: 500px;
+            height: 200px;
+            margin:auto;
+            box-sizing: border-box;
+        }
+        #container{
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            box-sizing: border-box;
+
+        }
+        #container *, #select *{
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            float:left;
+            border: 1px solid gray;
+        }
+        #btn{
+            height: 50px;
+            width: 60px;
+            padding: 5px;
+            margin-left: 47%;
+        }
+    </style>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div7" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div8" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+        <div id="div9" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+        </div>
+    </div>
+    <br>
+    <div id="select">
+        <div id="div01" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag1" alt="img">
+
+            </img>
+        </div>
+        <div id="div02" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag2" alt="img">
+
+            </img>
+        </div>
+        <div id="div03" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag3" alt="img">
+
+            </img>
+        </div>
+        <div id="div04" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag4" alt="img">
+
+            </img>
+        </div>
+        <div id="div05" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag5" alt="img">
+
+            </img>
+        </div>
+        <div id="div06" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag6" alt="img">
+
+            </img>
+        </div>
+        <div id="div077" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag7" alt="img">
+
+            </img>
+        </div>
+        <div id="div08" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag8" alt="img">
+
+            </img>
+        </div>
+        <div id="div09" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag9" alt="img">
+
+            </img>
+        </div>
+        <div id="div10" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img class="image-select" draggable="true" ondragstart="drag(event)" id="drag10" alt="img">
+
+            </img>
+        </div>
+    </div>
+    <br>
+    <button id="btn">Check</button>
+    <script>
+        function shuffle(array) {
+            array.sort(() => Math.random() - 0.5);
+        }
+        window.onload = function(){
+            let angles = [0,90,180,270];
+            let images = ["cntt_01.gif","cntt_02.gif","cntt_03.gif","cntt_04.gif","cntt_05.gif","cntt_06.gif","cntt_07.gif",
+        "cntt_08.gif","cntt_09.gif","cntt_10.gif"];
+            shuffle(images);
+            let img = $(".image-select");
+            for(let i = 0; i<img.length;i++){
+                img[i].setAttribute("src",images[i]);
+                shuffle(angles);
+                img[i].style.transform = 'rotate('+angles[0] +'deg)';
+            }
+        }
+        $(".image-select").click(function(){
+            let angle = $(this).css("transform");
+            if(angle === "matrix(1, 0, 0, 1, 0, 0)")
+                $(this).css("transform","rotate(90deg")
+            else if(angle === "matrix(6.12323e-17, 1, -1, 6.12323e-17, 0, 0)")
+                $(this).css("transform","rotate(180deg)")
+            else if(angle === "matrix(-1, 1.22465e-16, -1.22465e-16, -1, 0, 0)")
+                $(this).css("transform","rotate(270deg)")
+            else 
+                $(this).css("transform","rotate(0deg)")
+        })
+        $(document).ready(function(){
+            $('#container div').mouseenter(function(){
+                if($(this).has('img').length == 1)
+                    $(this).attr('ondrop','')
+                else
+                    $(this).attr('ondrop','drop(event)')
+            })
+        })
+        $('#btn').click(function(){
+            let images = ["cntt_01.gif","cntt_02.gif","cntt_03.gif","cntt_04.gif","cntt_05.gif","cntt_06.gif","cntt_07.gif",
+        "cntt_08.gif","cntt_09.gif"]
+            if($('#container div').has('img').length == 9){
+                let images_select = [];
+                for(let i = 0; i<9; i++){
+                    images_select.push($('.image-select')[i].getAttribute('src'))
+                    if(images[i] != images_select[i]){
+                        alert("You might make some mistake!!!")
+                        return ''
+                    }
+                }
+                alert("Congratulations!!!")
+            }
+            else
+                alert("You lost something?!?")
+        })
+    </script>
+</body>
+</html>
